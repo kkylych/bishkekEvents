@@ -1,4 +1,4 @@
-package com.example.springmid.user;
+package com.example.springmid.customer;
 
 import com.example.springmid.dto.response.CustomerResponseDTO;
 import com.example.springmid.dto.reuest.CustomerRequestDTO;
@@ -16,7 +16,7 @@ import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-public class UserServiceTest {
+public class CustomerServiceTest {
 
     @Mock
     private UserRepository userRepository;

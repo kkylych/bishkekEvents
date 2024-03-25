@@ -1,4 +1,4 @@
-package com.example.springmid.user;
+package com.example.springmid.customer;
 
 import com.example.springmid.controllers.UserController;
 import com.example.springmid.dto.reuest.CustomerRequestDTO;
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-class UserControllerTest {
+class CustomerControllerTest {
 
     @Mock
     private CustomerService userService;
