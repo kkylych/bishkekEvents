@@ -3,7 +3,7 @@ package com.example.springmid.customer;
 import com.example.springmid.dto.response.CustomerResponseDTO;
 import com.example.springmid.dto.reuest.CustomerRequestDTO;
 import com.example.springmid.entities.Customer;
-import com.example.springmid.mappers.UserMapper;
+import com.example.springmid.mappers.CustomerMapper;
 import com.example.springmid.repositories.UserRepository;
 import com.example.springmid.services.impl.CustomerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +22,7 @@ public class CustomerServiceTest {
     private UserRepository userRepository;
 
     @Mock
-    private UserMapper userMapper;
+    private CustomerMapper customerMapper;
 
     @InjectMocks
     private CustomerServiceImpl userService;
@@ -52,9 +52,9 @@ public class CustomerServiceTest {
 
         when(userRepository.existsByUsername(requestDTO.getUsername())).thenReturn(false);
         when(userRepository.existsByEmail(requestDTO.getEmail())).thenReturn(false);
-        when(userMapper.toEntity(requestDTO)).thenReturn(user);
+        when(customerMapper.toEntity(requestDTO)).thenReturn(user);
         when(userRepository.save(user)).thenReturn(user);
-        when(userMapper.toDTO(user)).thenReturn(expectedResponse);
+        when(customerMapper.toDTO(user)).thenReturn(expectedResponse);
 
         CustomerResponseDTO actualResponse = userService.create(requestDTO);
 

@@ -4,7 +4,7 @@ import com.example.springmid.dto.response.CustomerResponseDTO;
 import com.example.springmid.dto.reuest.CustomerRequestDTO;
 import com.example.springmid.entities.Customer;
 import com.example.springmid.exceptions.GeneralException;
-import com.example.springmid.mappers.UserMapper;
+import com.example.springmid.mappers.CustomerMapper;
 import com.example.springmid.repositories.UserRepository;
 import com.example.springmid.services.CustomerService;
 import org.springframework.stereotype.Service;
@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 public class CustomerServiceImpl implements CustomerService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
+    private final CustomerMapper customerMapper;
 
-    public CustomerServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+    public CustomerServiceImpl(UserRepository userRepository, CustomerMapper customerMapper) {
         this.userRepository = userRepository;
-        this.userMapper = userMapper;
+        this.customerMapper = customerMapper;
     }
 
     @Override
@@ -32,8 +32,8 @@ public class CustomerServiceImpl implements CustomerService {
         if (userRepository.existsByEmail(userRequestDTO.getEmail())) {
             throw new GeneralException("Email already exists");
         }
-        Customer user = userRepository.save(userMapper.toEntity(userRequestDTO));
-        return userMapper.toDTO(user);
+        Customer user = userRepository.save(customerMapper.toEntity(userRequestDTO));
+        return customerMapper.toDTO(user);
     }
 
     @Override
@@ -43,19 +43,19 @@ public class CustomerServiceImpl implements CustomerService {
         user.setEmail(userRequestDTO.getEmail());
         user.setPassword(userRequestDTO.getPassword());
         userRepository.save(user);
-        return userMapper.toDTO(user);
+        return customerMapper.toDTO(user);
     }
 
     @Override
     public CustomerResponseDTO get(Long id) {
-        return userMapper.toDTO(userRepository.findById(id).orElseThrow(() -> new GeneralException("User not found")));
+        return customerMapper.toDTO(userRepository.findById(id).orElseThrow(() -> new GeneralException("User not found")));
     }
 
     @Override
     public List<CustomerResponseDTO> getAll() {
         return userRepository.findAll()
                 .stream()
-                .map(userMapper::toDTO)
+                .map(customerMapper::toDTO)
                 .collect(Collectors.toList());
     }
 }
