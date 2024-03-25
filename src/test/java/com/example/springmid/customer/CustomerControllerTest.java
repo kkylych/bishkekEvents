@@ -1,6 +1,6 @@
 package com.example.springmid.customer;
 
-import com.example.springmid.controllers.UserController;
+import com.example.springmid.controllers.CustomerController;
 import com.example.springmid.dto.reuest.CustomerRequestDTO;
 import com.example.springmid.dto.response.CustomerResponseDTO;
 import com.example.springmid.services.CustomerService;
@@ -23,12 +23,12 @@ class CustomerControllerTest {
     @Mock
     private CustomerService userService;
 
-    private UserController userController;
+    private CustomerController customerController;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        userController = new UserController(userService);
+        customerController = new CustomerController(userService);
     }
 
     @Test
@@ -45,7 +45,7 @@ class CustomerControllerTest {
 
         when(userService.create(any(CustomerRequestDTO.class))).thenReturn(responseDTO);
 
-        ResponseEntity<CustomerResponseDTO> response = userController.createUser(requestDTO);
+        ResponseEntity<CustomerResponseDTO> response = customerController.createUser(requestDTO);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(responseDTO, response.getBody());
@@ -62,7 +62,7 @@ class CustomerControllerTest {
 
         when(userService.getAll()).thenReturn(userList);
 
-        ResponseEntity<List<CustomerResponseDTO>> response = userController.getAllUsers();
+        ResponseEntity<List<CustomerResponseDTO>> response = customerController.getAllUsers();
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(userList, response.getBody());
