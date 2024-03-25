@@ -34,7 +34,7 @@ public class OrderServiceTest {
 
     @Test
     void testCreateOrder() {
-        User user = new User();
+        Customer user = new Customer();
         user.setId(1L);
 
         Product dress = new Product();
@@ -78,7 +78,7 @@ public class OrderServiceTest {
         Order order = new Order();
         order.setId(1L);
 
-        User user = new User();
+        Customer user = new Customer();
         user.setId(1L);
 
         List<Product> products = new ArrayList<>();
