@@ -4,7 +4,7 @@ import com.example.springmid.dto.response.CustomerResponseDTO;
 import com.example.springmid.dto.reuest.CustomerRequestDTO;
 import com.example.springmid.entities.Customer;
 import com.example.springmid.mappers.CustomerMapper;
-import com.example.springmid.repositories.UserRepository;
+import com.example.springmid.repositories.CustomerRepository;
 import com.example.springmid.services.impl.CustomerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 public class CustomerServiceTest {
 
     @Mock
-    private UserRepository userRepository;
+    private CustomerRepository customerRepository;
 
     @Mock
     private CustomerMapper customerMapper;
@@ -50,10 +50,10 @@ public class CustomerServiceTest {
         expectedResponse.setUsername(user.getUsername());
         expectedResponse.setEmail(user.getEmail());
 
-        when(userRepository.existsByUsername(requestDTO.getUsername())).thenReturn(false);
-        when(userRepository.existsByEmail(requestDTO.getEmail())).thenReturn(false);
+        when(customerRepository.existsByUsername(requestDTO.getUsername())).thenReturn(false);
+        when(customerRepository.existsByEmail(requestDTO.getEmail())).thenReturn(false);
         when(customerMapper.toEntity(requestDTO)).thenReturn(user);
-        when(userRepository.save(user)).thenReturn(user);
+        when(customerRepository.save(user)).thenReturn(user);
         when(customerMapper.toDTO(user)).thenReturn(expectedResponse);
 
         CustomerResponseDTO actualResponse = userService.create(requestDTO);
