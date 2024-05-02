@@ -1,6 +1,6 @@
 package com.example.springmid.customer;
 
-import com.example.springmid.controllers.CustomerController;
+import com.example.springmid.controller.CustomerController;
 import com.example.springmid.dto.reuest.CustomerRequestDTO;
 import com.example.springmid.dto.response.CustomerResponseDTO;
 import com.example.springmid.services.CustomerService;

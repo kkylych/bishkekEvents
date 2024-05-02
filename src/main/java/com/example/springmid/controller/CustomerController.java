@@ -1,4 +1,4 @@
-package com.example.springmid.controllers;
+package com.example.springmid.controller;
 
 import com.example.springmid.dto.response.CustomerResponseDTO;
 import com.example.springmid.dto.reuest.CustomerRequestDTO;
