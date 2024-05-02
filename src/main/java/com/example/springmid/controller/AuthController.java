@@ -2,31 +2,28 @@ package com.example.springmid.controller;
 
 import com.example.springmid.dto.request.AuthRequestDTO;
 import com.example.springmid.dto.request.AuthResponseDTO;
-import com.example.springmid.service.impl.JwtService;
+import com.example.springmid.dto.request.RefreshTokenRequestDTO;
+import com.example.springmid.service.AuthService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/v1")
 public class AuthController {
-    private final AuthenticationManager authenticationManager;
-    private final JwtService jwtService;
+    private final AuthService authService;
 
-    @PostMapping("/api/v1/login")
-    public AuthResponseDTO AuthenticateAndGetToken(@RequestBody AuthRequestDTO authRequestDTO){
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(), authRequestDTO.getPassword()));
-        if(authentication.isAuthenticated()){
-            return AuthResponseDTO.builder()
-                    .accessToken(jwtService.GenerateToken(authRequestDTO.getUsername())).build();
-        } else {
-            throw new UsernameNotFoundException("invalid user request..!!");
-        }
+    @PostMapping("/login")
+    public AuthResponseDTO authenticate(@RequestBody AuthRequestDTO authRequestDTO){
+        return authService.authenticate(authRequestDTO);
+    }
+
+    @PostMapping("/refreshToken")
+    public AuthResponseDTO refreshToken(@RequestBody RefreshTokenRequestDTO refreshTokenRequestDTO){
+        return authService.refreshToken(refreshTokenRequestDTO);
     }
 
 }

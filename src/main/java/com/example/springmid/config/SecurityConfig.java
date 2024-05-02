@@ -28,6 +28,11 @@ public class SecurityConfig {
     private final JwtAuthFilter jwtAuthFilter;
     private final CustomerRepository customerRepository;
 
+    private final String[] WHITELISTED_ENDPOINTS = {
+            "/api/v1/login",
+            "/api/v1/refreshToken"
+    };
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImpl(customerRepository);
@@ -37,7 +42,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/api/v1/login").permitAll()
+                        .requestMatchers(WHITELISTED_ENDPOINTS).permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
