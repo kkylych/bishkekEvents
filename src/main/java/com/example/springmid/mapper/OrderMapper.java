@@ -1,10 +1,10 @@
-package com.example.springmid.mappers;
+package com.example.springmid.mapper;
 
 import com.example.springmid.dto.response.OrderResponseDTO;
-import com.example.springmid.dto.reuest.OrderRequestDTO;
-import com.example.springmid.entities.Order;
-import com.example.springmid.entities.Product;
-import com.example.springmid.entities.Customer;
+import com.example.springmid.dto.request.OrderRequestDTO;
+import com.example.springmid.entity.Order;
+import com.example.springmid.entity.Product;
+import com.example.springmid.entity.Customer;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring", uses = {Customer.class, Product.class})

@@ -1,12 +1,12 @@
-package com.example.springmid.services.impl;
+package com.example.springmid.service.impl;
 
 import com.example.springmid.dto.response.CustomerResponseDTO;
-import com.example.springmid.dto.reuest.CustomerRequestDTO;
-import com.example.springmid.entities.Customer;
-import com.example.springmid.exceptions.GeneralException;
-import com.example.springmid.mappers.CustomerMapper;
-import com.example.springmid.repositories.CustomerRepository;
-import com.example.springmid.services.CustomerService;
+import com.example.springmid.dto.request.CustomerRequestDTO;
+import com.example.springmid.entity.Customer;
+import com.example.springmid.exception.GeneralException;
+import com.example.springmid.mapper.CustomerMapper;
+import com.example.springmid.repository.CustomerRepository;
+import com.example.springmid.service.CustomerService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

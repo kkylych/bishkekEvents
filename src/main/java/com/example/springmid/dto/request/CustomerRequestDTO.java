@@ -1,4 +1,4 @@
-package com.example.springmid.dto.reuest;
+package com.example.springmid.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

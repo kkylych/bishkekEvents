@@ -1,4 +1,4 @@
-package com.example.springmid.exceptions;
+package com.example.springmid.exception;
 
 public class ErrorResponse {
     private final String error;

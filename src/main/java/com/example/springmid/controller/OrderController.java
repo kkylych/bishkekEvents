@@ -1,8 +1,8 @@
 package com.example.springmid.controller;
 
 import com.example.springmid.dto.response.OrderResponseDTO;
-import com.example.springmid.dto.reuest.OrderRequestDTO;
-import com.example.springmid.services.OrderService;
+import com.example.springmid.dto.request.OrderRequestDTO;
+import com.example.springmid.service.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

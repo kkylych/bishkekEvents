@@ -1,6 +1,6 @@
 package com.example.springmid.dto.response;
 
-import com.example.springmid.entities.Product;
+import com.example.springmid.entity.Product;
 import lombok.Data;
 
 import java.time.LocalDateTime;

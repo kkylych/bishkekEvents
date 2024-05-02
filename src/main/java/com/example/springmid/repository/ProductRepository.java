@@ -1,6 +1,6 @@
-package com.example.springmid.repositories;
+package com.example.springmid.repository;
 
-import com.example.springmid.entities.Product;
+import com.example.springmid.entity.Product;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

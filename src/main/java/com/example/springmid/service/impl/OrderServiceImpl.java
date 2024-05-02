@@ -1,12 +1,12 @@
-package com.example.springmid.services.impl;
+package com.example.springmid.service.impl;
 
 import com.example.springmid.dto.response.OrderResponseDTO;
-import com.example.springmid.dto.reuest.OrderRequestDTO;
-import com.example.springmid.entities.Order;
-import com.example.springmid.exceptions.GeneralException;
-import com.example.springmid.mappers.OrderMapper;
-import com.example.springmid.repositories.OrderRepository;
-import com.example.springmid.services.OrderService;
+import com.example.springmid.dto.request.OrderRequestDTO;
+import com.example.springmid.entity.Order;
+import com.example.springmid.exception.GeneralException;
+import com.example.springmid.mapper.OrderMapper;
+import com.example.springmid.repository.OrderRepository;
+import com.example.springmid.service.OrderService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.example.springmid.repositories;
+package com.example.springmid.repository;
 
-import com.example.springmid.entities.Customer;
+import com.example.springmid.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

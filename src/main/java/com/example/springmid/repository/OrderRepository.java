@@ -1,8 +1,7 @@
-package com.example.springmid.repositories;
+package com.example.springmid.repository;
 
-import com.example.springmid.entities.Order;
+import com.example.springmid.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

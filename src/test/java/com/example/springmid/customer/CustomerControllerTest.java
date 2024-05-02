@@ -1,9 +1,9 @@
 package com.example.springmid.customer;
 
 import com.example.springmid.controller.CustomerController;
-import com.example.springmid.dto.reuest.CustomerRequestDTO;
+import com.example.springmid.dto.request.CustomerRequestDTO;
 import com.example.springmid.dto.response.CustomerResponseDTO;
-import com.example.springmid.services.CustomerService;
+import com.example.springmid.service.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

@@ -1,8 +1,8 @@
 package com.example.springmid.controller;
 
 import com.example.springmid.dto.response.CustomerResponseDTO;
-import com.example.springmid.dto.reuest.CustomerRequestDTO;
-import com.example.springmid.services.CustomerService;
+import com.example.springmid.dto.request.CustomerRequestDTO;
+import com.example.springmid.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

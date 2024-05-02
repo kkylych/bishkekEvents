@@ -1,7 +1,7 @@
-package com.example.springmid.dto.reuest;
+package com.example.springmid.dto.request;
 
-import com.example.springmid.entities.Product;
-import com.example.springmid.entities.Customer;
+import com.example.springmid.entity.Product;
+import com.example.springmid.entity.Customer;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 

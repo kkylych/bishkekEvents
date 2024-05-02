@@ -1,7 +1,7 @@
-package com.example.springmid.services;
+package com.example.springmid.service;
 
 import com.example.springmid.dto.response.OrderResponseDTO;
-import com.example.springmid.dto.reuest.OrderRequestDTO;
+import com.example.springmid.dto.request.OrderRequestDTO;
 
 import java.util.List;
 

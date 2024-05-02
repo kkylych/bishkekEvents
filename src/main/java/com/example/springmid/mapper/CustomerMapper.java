@@ -1,8 +1,8 @@
-package com.example.springmid.mappers;
+package com.example.springmid.mapper;
 
 import com.example.springmid.dto.response.CustomerResponseDTO;
-import com.example.springmid.dto.reuest.CustomerRequestDTO;
-import com.example.springmid.entities.Customer;
+import com.example.springmid.dto.request.CustomerRequestDTO;
+import com.example.springmid.entity.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

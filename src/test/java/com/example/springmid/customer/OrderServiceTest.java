@@ -1,13 +1,13 @@
 package com.example.springmid.customer;
 
 
-import com.example.springmid.dto.reuest.OrderRequestDTO;
+import com.example.springmid.dto.request.OrderRequestDTO;
 import com.example.springmid.dto.response.OrderResponseDTO;
-import com.example.springmid.entities.Order;
-import com.example.springmid.entities.Product;
-import com.example.springmid.entities.Customer;
-import com.example.springmid.repositories.OrderRepository;
-import com.example.springmid.services.impl.OrderServiceImpl;
+import com.example.springmid.entity.Order;
+import com.example.springmid.entity.Product;
+import com.example.springmid.entity.Customer;
+import com.example.springmid.repository.OrderRepository;
+import com.example.springmid.service.impl.OrderServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
