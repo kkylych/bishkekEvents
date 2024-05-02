@@ -18,11 +18,18 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
     private final CustomerRepository customerRepository;
 
     public RefreshToken createRefreshToken(String username) {
+        Optional<RefreshToken> refreshTokenOptional = refreshTokenRepository.findByCustomerUsername(username);
+
+        if (refreshTokenOptional.isPresent()) {
+            return refreshTokenOptional.get();
+        }
+
         RefreshToken refreshToken = RefreshToken.builder()
                 .customer(customerRepository.findByUsername(username))
                 .token(UUID.randomUUID().toString())
                 .expiryDate(Instant.now().plusMillis(36000000)) // 10 hours
                 .build();
+
         return refreshTokenRepository.save(refreshToken);
     }
 

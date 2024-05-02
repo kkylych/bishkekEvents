@@ -1,6 +1,5 @@
 package com.example.springmid.service.impl;
 
-import com.example.springmid.entity.CustomUserDetails;
 import com.example.springmid.entity.Customer;
 import com.example.springmid.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +27,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("could not found user..!!");
         }
         logger.info("User Authenticated Successfully..!!!");
-        return new CustomUserDetails(user);
+        return user;
     }
 }
