@@ -24,26 +24,20 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerResponseDTO create(CustomerRequestDTO userRequestDTO) {
-        if (customerRepository.existsByUsername(userRequestDTO.getUsername())) {
-            throw new GeneralException("Username already exists");
+    public CustomerResponseDTO update(Customer customer, String username, String email) {
+        if (customerRepository.existsByUsername(username)) {
+            throw new GeneralException("User with such username exists");
         }
 
-        if (customerRepository.existsByEmail(userRequestDTO.getEmail())) {
-            throw new GeneralException("Email already exists");
+        if (customerRepository.existsByEmail(email)) {
+            throw new GeneralException("User with such email exists");
         }
-        Customer user = customerRepository.save(customerMapper.toEntity(userRequestDTO));
-        return customerMapper.toDTO(user);
-    }
 
-    @Override
-    public CustomerResponseDTO update(Long id, CustomerRequestDTO userRequestDTO) {
-        Customer user = customerRepository.findById(id).orElseThrow(() -> new GeneralException("User not found exception"));
-        user.setUsername(userRequestDTO.getUsername());
-        user.setEmail(userRequestDTO.getEmail());
-        user.setPassword(userRequestDTO.getPassword());
-        customerRepository.save(user);
-        return customerMapper.toDTO(user);
+        customer.setUsername(username);
+        customer.setEmail(email);
+        customerRepository.save(customer);
+
+        return customerMapper.toDTO(customer);
     }
 
     @Override
