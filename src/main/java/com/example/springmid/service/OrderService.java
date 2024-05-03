@@ -2,6 +2,7 @@ package com.example.springmid.service;
 
 import com.example.springmid.dto.response.OrderResponseDTO;
 import com.example.springmid.dto.request.OrderRequestDTO;
+import com.example.springmid.entity.Customer;
 
 import java.util.List;
 

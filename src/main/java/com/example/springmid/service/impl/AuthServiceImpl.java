@@ -13,6 +13,7 @@ import com.example.springmid.repository.CustomerRepository;
 import com.example.springmid.service.AuthService;
 import com.example.springmid.service.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -72,6 +73,6 @@ public class AuthServiceImpl implements AuthService {
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         customerRepository.save(customer);
 
-        return ResponseEntity.ok("Successfully signed up! Now you can authenticate.");
+        return new ResponseEntity<>("Successfully signed up! Now you can login.", HttpStatus.CREATED);
     }
 }

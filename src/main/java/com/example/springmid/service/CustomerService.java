@@ -8,6 +8,8 @@ import com.example.springmid.entity.Customer;
 import java.util.List;
 
 public interface CustomerService {
+    CustomerResponseDTO create(CustomerRequestDTO userRequestDTO);
+
     CustomerResponseDTO update(Customer customer, String username, String email);
 
     CustomerResponseDTO get(Long id);

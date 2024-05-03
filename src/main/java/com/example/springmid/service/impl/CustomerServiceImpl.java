@@ -3,6 +3,7 @@ package com.example.springmid.service.impl;
 import com.example.springmid.dto.response.CustomerResponseDTO;
 import com.example.springmid.dto.request.CustomerRequestDTO;
 import com.example.springmid.entity.Customer;
+import com.example.springmid.enums.Role;
 import com.example.springmid.exception.GeneralException;
 import com.example.springmid.mapper.CustomerMapper;
 import com.example.springmid.repository.CustomerRepository;
@@ -21,6 +22,22 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapper customerMapper) {
         this.customerRepository = customerRepository;
         this.customerMapper = customerMapper;
+    }
+
+    @Override
+    public CustomerResponseDTO create(CustomerRequestDTO userRequestDTO) {
+        if (customerRepository.existsByUsername(userRequestDTO.getUsername())) {
+            throw new GeneralException("Username already exists");
+        }
+
+        if (customerRepository.existsByEmail(userRequestDTO.getEmail())) {
+            throw new GeneralException("Email already exists");
+        }
+        Customer user = customerMapper.toEntity(userRequestDTO);
+        user.setRole(Role.CUSTOMER);
+        customerRepository.save(user);
+
+        return customerMapper.toDTO(user);
     }
 
     @Override

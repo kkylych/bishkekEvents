@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,16 @@ public class CustomerController {
 
     public CustomerController(CustomerService userService) {
         this.userService = userService;
+    }
+
+    @PostMapping
+    @Operation(
+            summary = "Creating user"
+    )
+    @SecurityRequirement(name = "JWT")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<CustomerResponseDTO> createUser(@RequestBody CustomerRequestDTO userRequestDTO) {
+        return new ResponseEntity<>(userService.create(userRequestDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
