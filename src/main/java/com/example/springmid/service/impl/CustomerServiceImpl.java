@@ -8,6 +8,7 @@ import com.example.springmid.exception.GeneralException;
 import com.example.springmid.mapper.CustomerMapper;
 import com.example.springmid.repository.CustomerRepository;
 import com.example.springmid.service.CustomerService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +19,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapper customerMapper) {
+    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapper customerMapper, PasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
         this.customerMapper = customerMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -34,6 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
             throw new GeneralException("Email already exists");
         }
         Customer user = customerMapper.toEntity(userRequestDTO);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(Role.CUSTOMER);
         customerRepository.save(user);
 

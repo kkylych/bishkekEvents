@@ -4,18 +4,15 @@ import com.example.springmid.dto.request.AuthRequestDTO;
 import com.example.springmid.dto.request.AuthResponseDTO;
 import com.example.springmid.dto.request.CustomerRequestDTO;
 import com.example.springmid.dto.request.RefreshTokenRequestDTO;
-import com.example.springmid.dto.response.CustomerResponseDTO;
 import com.example.springmid.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,8 +27,9 @@ public class AuthController {
     @Operation(
             summary = "Registration"
     )
-    public ResponseEntity<?> signUp(@Valid @RequestBody CustomerRequestDTO requestDTO) {
-        return authService.signUp(requestDTO);
+    public ResponseEntity<?> signUp(@Valid @RequestBody CustomerRequestDTO requestDTO,
+                                    HttpServletRequest servletRequest) throws MessagingException {
+        return authService.signUp(requestDTO, servletRequest);
     }
 
     @PostMapping("/login")
@@ -50,4 +48,11 @@ public class AuthController {
         return authService.refreshToken(refreshTokenRequestDTO);
     }
 
+    @GetMapping("/verify")
+    @Operation(
+            summary = "Email verification"
+    )
+    public String verifyEmail(@RequestParam("token") String token){
+        return authService.verifyEmail(token);
+    }
 }

@@ -1,21 +1,20 @@
 package com.example.springmid.entity;
 
 import com.example.springmid.enums.Role;
+import com.example.springmid.enums.Status;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Data
 @Table(name="customers")
-public class Customer implements UserDetails {
+public class Customer implements UserDetails, OAuth2User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,6 +23,8 @@ public class Customer implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -48,5 +49,20 @@ public class Customer implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public Map<String, Object> getAttributes() {
+        Map<String, Object> attributes = new HashMap<>();
+        attributes.put("id", getId());
+        attributes.put("name", getName());
+        attributes.put("login", getUsername());
+        attributes.put("email", getEmail());
+        return attributes;
+    }
+
+    @Override
+    public String getName() {
+        return username;
     }
 }

@@ -1,0 +1,30 @@
+server:
+  port: 9999
+
+spring:
+  datasource:
+    url: ${JDBC_URL:jdbc:h2:file:./database/order}
+    driver-class-name: ${DRIVER_CLASS_NAME:org.h2.Driver}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:password}
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: ${HBM_DDL_AUTO:create-drop}
+    properties:
+      hibernate:
+        dialect: ${HBM_DIALECT:org.hibernate.dialect.H2Dialect}
+  h2:
+    console:
+      enabled: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: opinion.techsupp@gmail.com
+    password: xtdk zfst utei mtjj
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
