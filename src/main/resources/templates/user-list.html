@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User List</title>
+</head>
+<body>
+<h1>User List</h1>
+
+<!-- Display success message if user is created or deleted -->
+<div th:if="${successMessage}">
+    <p th:text="${successMessage}"></p>
+</div>
+
+<!-- List of users -->
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+        <td>
+            <a th:href="@{/users/{id}(id=${user.id})}">View</a> |
+            <form th:action="@{/users/{id}(id=${user.id})}" method="post" th:object="${user}" th:method="delete">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/users/new">Add New User</a>
+</body>
+</html>
