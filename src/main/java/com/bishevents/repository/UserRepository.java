@@ -1,6 +1,6 @@
 package com.bishevents.repository;
-import com.bishevents.entity.User_;
+import com.bishevents.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User_, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 }

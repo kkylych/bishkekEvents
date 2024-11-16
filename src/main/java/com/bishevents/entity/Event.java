@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "event")
 public class Event {
     @jakarta.persistence.Id
     @Id
@@ -22,7 +23,7 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "organizer_id")
-    private User_ organizer;
+    private User organizer;
 
     public Long getId() {
         return id;
@@ -88,11 +89,11 @@ public class Event {
         this.longitude = longitude;
     }
 
-    public User_ getOrganizer() {
+    public User getOrganizer() {
         return organizer;
     }
 
-    public void setOrganizer(User_ organizer) {
+    public void setOrganizer(User organizer) {
         this.organizer = organizer;
     }
 }

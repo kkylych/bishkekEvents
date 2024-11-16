@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
 @Entity
+@Table(name = "booking")
 public class Booking {
     @jakarta.persistence.Id
     @Id
@@ -12,7 +13,7 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User_ user;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "event_id")
@@ -28,11 +29,11 @@ public class Booking {
         this.id = id;
     }
 
-    public User_ getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(User_ user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
 @Entity
+@Table(name = "review")
 public class Review {
     @jakarta.persistence.Id
     @Id

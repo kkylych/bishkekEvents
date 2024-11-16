@@ -2,7 +2,7 @@ package com.bishevents.Mapper;
 
 import com.bishevents.DTO.EventDTO;
 import com.bishevents.entity.Event;
-import com.bishevents.entity.User_;
+import com.bishevents.entity.User;
 
 public class EventMapper {
     public static EventDTO toDto(Event event) {
@@ -11,7 +11,7 @@ public class EventMapper {
                 event.getOrganizer().getId());
     }
 
-    public static Event toEntity(EventDTO eventDTO, User_ organizer) {
+    public static Event toEntity(EventDTO eventDTO, User organizer) {
         Event event = new Event();
         event.setId(eventDTO.id());
         event.setTitle(eventDTO.title());

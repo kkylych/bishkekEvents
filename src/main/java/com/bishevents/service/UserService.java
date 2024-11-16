@@ -1,7 +1,7 @@
 package com.bishevents.service;
 import com.bishevents.DTO.UserDTO;
 import com.bishevents.Mapper.UserMapper;
-import com.bishevents.entity.User_;
+import com.bishevents.entity.User;
 import com.bishevents.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +30,8 @@ public class UserService {
     }
 
     public UserDTO saveUser(UserDTO userDTO) {
-        User_ user = UserMapper.toEntity(userDTO);
-        User_ savedUser = userRepository.save(user);
+        User user = UserMapper.toEntity(userDTO);
+        User savedUser = userRepository.save(user);
         return UserMapper.toDto(savedUser);
     }
 

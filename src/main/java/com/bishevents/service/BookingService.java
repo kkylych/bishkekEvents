@@ -3,7 +3,7 @@ import com.bishevents.DTO.BookingDTO;
 import com.bishevents.Mapper.BookingMapper;
 import com.bishevents.entity.Booking;
 import com.bishevents.entity.Event;
-import com.bishevents.entity.User_;
+import com.bishevents.entity.User;
 import com.bishevents.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,7 @@ public class BookingService {
     }
 
     public BookingDTO saveBooking(BookingDTO bookingDTO) {
-        User_ user = new User_(); // Здесь необходимо передать правильного пользователя
+        User user = new User(); // Здесь необходимо передать правильного пользователя
         Event event = new Event(); // Здесь необходимо передать правильное событие
         Booking booking = BookingMapper.toEntity(bookingDTO, user, event);
         Booking savedBooking = bookingRepository.save(booking);

@@ -1,15 +1,15 @@
 package com.bishevents.Mapper;
 
 import com.bishevents.DTO.UserDTO;
-import com.bishevents.entity.User_;
+import com.bishevents.entity.User;
 
 public class UserMapper {
-    public static UserDTO toDto(User_ user) {
+    public static UserDTO toDto(User user) {
         return new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getRole());
     }
 
-    public static User_ toEntity(UserDTO userDTO) {
-        User_ user = new User_();
+    public static User toEntity(UserDTO userDTO) {
+        User user = new User();
         user.setId(userDTO.id());
         user.setName(userDTO.name());
         user.setEmail(userDTO.email());

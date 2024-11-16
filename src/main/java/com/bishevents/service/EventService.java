@@ -2,7 +2,7 @@ package com.bishevents.service;
 import com.bishevents.DTO.EventDTO;
 import com.bishevents.Mapper.EventMapper;
 import com.bishevents.entity.Event;
-import com.bishevents.entity.User_;
+import com.bishevents.entity.User;
 import com.bishevents.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ public class EventService {
     }
 
     public EventDTO saveEvent(EventDTO eventDTO) {
-        User_ organizer = new User_(); // Здесь необходимо передать правильного организатора
+        User organizer = new User(); // Здесь необходимо передать правильного организатора
         Event event = EventMapper.toEntity(eventDTO, organizer);
         Event savedEvent = eventRepository.save(event);
         return EventMapper.toDto(savedEvent);
