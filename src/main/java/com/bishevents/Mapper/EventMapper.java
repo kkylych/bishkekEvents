@@ -7,7 +7,7 @@ import com.bishevents.entity.User;
 public class EventMapper {
     public static EventDTO toDto(Event event) {
         return new EventDTO(event.getId(), event.getTitle(), event.getCategory(), event.getDescription(),
-                event.getEventDateTime(), event.getLocation(), event.getLatitude(), event.getLongitude(),
+                event.getEventDateTime(), event.getLocation(), event.getDuration(),
                 event.getOrganizer().getId());
     }
 
@@ -19,8 +19,7 @@ public class EventMapper {
         event.setDescription(eventDTO.description());
         event.setEventDateTime(eventDTO.eventDateTime());
         event.setLocation(eventDTO.location());
-        event.setLatitude(eventDTO.latitude());
-        event.setLongitude(eventDTO.longitude());
+        event.setDuration(eventDTO.duration());
         event.setOrganizer(organizer);
         return event;
     }
