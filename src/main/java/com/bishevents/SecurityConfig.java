@@ -17,7 +17,10 @@ public class SecurityConfig {
                         .requestMatchers("/users").authenticated()
                         .anyRequest().permitAll()
                 )
+//                .cors()
                 .httpBasic();
+//        http.cors(AbstractHttpConfigurer::disable);
+
 
         return http.build();
     }
