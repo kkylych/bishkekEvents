@@ -44,4 +44,20 @@ public class EventController {
         eventService.deleteEvent(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    // Добавлен метод для фильтрации событий по категории
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<EventDTO>> getEventsByCategory(@PathVariable String category) {
+        System.out.println("Запрос категории: " + category);
+        // Получаем список событий по категории
+        List<EventDTO> events = eventService.getEventsByCategory(category);
+
+        if (events.isEmpty()) {
+            // Если события не найдены, возвращаем 404 Not Found
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        // Возвращаем события с статусом OK (200)
+        return new ResponseEntity<>(events, HttpStatus.OK);
+    }
 }

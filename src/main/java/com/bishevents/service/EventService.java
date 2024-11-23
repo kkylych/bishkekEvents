@@ -40,4 +40,10 @@ public class EventService {
     public void deleteEvent(Long id) {
         eventRepository.deleteById(id);
     }
+
+    public List<EventDTO> getEventsByCategory(String category) {
+        return eventRepository.findByCategory(category).stream()  // Вызываем репозиторий для получения данных
+                .map(EventMapper::toDto)  // Преобразуем сущности в DTO
+                .collect(Collectors.toList());  // Собираем в список
+    }
 }
