@@ -1,11 +1,11 @@
 package com.example.springmid.customer;
 
 import com.example.springmid.dto.response.CustomerResponseDTO;
-import com.example.springmid.dto.request.CustomerRequestDTO;
-import com.example.springmid.entity.Customer;
-import com.example.springmid.mapper.CustomerMapper;
-import com.example.springmid.repository.CustomerRepository;
-import com.example.springmid.service.impl.CustomerServiceImpl;
+import com.example.springmid.dto.request.UserRequestDTO;
+import com.example.springmid.entity.User;
+import com.example.springmid.mapper.UserMapper;
+import com.example.springmid.repository.UserRepository;
+import com.example.springmid.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,16 +16,16 @@ import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-public class CustomerServiceTest {
+public class UserServiceTest {
 
     @Mock
-    private CustomerRepository customerRepository;
+    private UserRepository userRepository;
 
     @Mock
-    private CustomerMapper customerMapper;
+    private UserMapper userMapper;
 
     @InjectMocks
-    private CustomerServiceImpl userService;
+    private UserServiceImpl userService;
 
     @BeforeEach
     void setUp() {
@@ -34,12 +34,12 @@ public class CustomerServiceTest {
 
     @Test
     void testCreateUser_Success() {
-        CustomerRequestDTO requestDTO = new CustomerRequestDTO();
+        UserRequestDTO requestDTO = new UserRequestDTO();
         requestDTO.setUsername("testUser");
         requestDTO.setEmail("test@example.com");
         requestDTO.setPassword("password");
 
-        Customer user = new Customer();
+        User user = new User();
         user.setId(1L);
         user.setUsername(requestDTO.getUsername());
         user.setEmail(requestDTO.getEmail());
@@ -50,11 +50,11 @@ public class CustomerServiceTest {
         expectedResponse.setUsername(user.getUsername());
         expectedResponse.setEmail(user.getEmail());
 
-        when(customerRepository.existsByUsername(requestDTO.getUsername())).thenReturn(false);
-        when(customerRepository.existsByEmail(requestDTO.getEmail())).thenReturn(false);
-        when(customerMapper.toEntity(requestDTO)).thenReturn(user);
-        when(customerRepository.save(user)).thenReturn(user);
-        when(customerMapper.toDTO(user)).thenReturn(expectedResponse);
+        when(userRepository.existsByUsername(requestDTO.getUsername())).thenReturn(false);
+        when(userRepository.existsByEmail(requestDTO.getEmail())).thenReturn(false);
+        when(userMapper.toEntity(requestDTO)).thenReturn(user);
+        when(userRepository.save(user)).thenReturn(user);
+        when(userMapper.toDTO(user)).thenReturn(expectedResponse);
 
         CustomerResponseDTO actualResponse = userService.create(requestDTO);
 

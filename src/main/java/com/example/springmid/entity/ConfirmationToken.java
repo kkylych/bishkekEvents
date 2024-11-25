@@ -24,11 +24,11 @@ public class ConfirmationToken {
     private LocalDateTime expiredAt;
     @OneToOne
     @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+    private User user;
 
-    public ConfirmationToken(String token, Customer customer) {
+    public ConfirmationToken(String token, User user) {
         this.token = token;
-        this.customer = customer;
+        this.user = user;
         this.createdAt = LocalDateTime.now();
         expiredAt = createdAt.plus(EXPIRATION_TIME_IN_HOURS, ChronoUnit.HOURS);
     }

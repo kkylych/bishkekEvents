@@ -14,7 +14,7 @@ import java.util.*;
 @Entity
 @Data
 @Table(name="customers")
-public class Customer implements UserDetails, OAuth2User {
+public class User implements UserDetails, OAuth2User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

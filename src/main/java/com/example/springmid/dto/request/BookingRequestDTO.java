@@ -1,7 +1,7 @@
 package com.example.springmid.dto.request;
 
-import com.example.springmid.entity.Product;
-import com.example.springmid.entity.Customer;
+import com.example.springmid.entity.Event;
+import com.example.springmid.entity.User;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -9,13 +9,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-public class OrderRequestDTO {
+public class BookingRequestDTO {
 
-    @NotNull(message = "Order must have user")
-    private Customer user;
+    @NotNull(message = "Booking must have user")
+    private User user;
 
-    @NotNull(message = "Order must have products")
-    private List<Product> products;
+    @NotNull(message = "Booking must have products")
+    private List<Event> products;
 
     private LocalDateTime orderDate;
 

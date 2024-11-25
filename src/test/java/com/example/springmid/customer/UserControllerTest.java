@@ -1,8 +1,8 @@
 package com.example.springmid.customer;
 
-import com.example.springmid.controller.CustomerController;
+import com.example.springmid.controller.UserController;
 import com.example.springmid.dto.response.CustomerResponseDTO;
-import com.example.springmid.service.CustomerService;
+import com.example.springmid.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -16,17 +16,17 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-class CustomerControllerTest {
+class UserControllerTest {
 
     @Mock
-    private CustomerService userService;
+    private UserService userService;
 
-    private CustomerController customerController;
+    private UserController userController;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        customerController = new CustomerController(userService);
+        userController = new UserController(userService);
     }
 
     @Test
@@ -40,7 +40,7 @@ class CustomerControllerTest {
 
         when(userService.getAll()).thenReturn(userList);
 
-        ResponseEntity<List<CustomerResponseDTO>> response = customerController.getAllUsers();
+        ResponseEntity<List<CustomerResponseDTO>> response = userController.getAllUsers();
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(userList, response.getBody());

@@ -1,7 +1,7 @@
 package com.example.springmid.service.impl;
 
 import com.example.springmid.entity.RefreshToken;
-import com.example.springmid.repository.CustomerRepository;
+import com.example.springmid.repository.UserRepository;
 import com.example.springmid.repository.RefreshTokenRepository;
 import com.example.springmid.service.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class RefreshTokenServiceImpl implements RefreshTokenService {
     private final RefreshTokenRepository refreshTokenRepository;
-    private final CustomerRepository customerRepository;
+    private final UserRepository userRepository;
 
     public RefreshToken createRefreshToken(String username) {
         Optional<RefreshToken> refreshTokenOptional = refreshTokenRepository.findByCustomerUsername(username);
@@ -25,7 +25,7 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
         }
 
         RefreshToken refreshToken = RefreshToken.builder()
-                .customer(customerRepository.findByUsername(username))
+                .user(userRepository.findByUsername(username))
                 .token(UUID.randomUUID().toString())
                 .expiryDate(Instant.now().plusMillis(36000000)) // 10 hours
                 .build();

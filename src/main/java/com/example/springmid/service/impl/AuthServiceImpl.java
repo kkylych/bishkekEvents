@@ -2,17 +2,17 @@ package com.example.springmid.service.impl;
 
 import com.example.springmid.dto.request.AuthRequestDTO;
 import com.example.springmid.dto.request.AuthResponseDTO;
-import com.example.springmid.dto.request.CustomerRequestDTO;
+import com.example.springmid.dto.request.UserRequestDTO;
 import com.example.springmid.dto.request.RefreshTokenRequestDTO;
 import com.example.springmid.entity.ConfirmationToken;
-import com.example.springmid.entity.Customer;
+import com.example.springmid.entity.User;
 import com.example.springmid.entity.RefreshToken;
 import com.example.springmid.enums.Role;
 import com.example.springmid.enums.Status;
 import com.example.springmid.exception.GeneralException;
-import com.example.springmid.mapper.CustomerMapper;
+import com.example.springmid.mapper.UserMapper;
 import com.example.springmid.repository.ConfirmationTokenRepository;
-import com.example.springmid.repository.CustomerRepository;
+import com.example.springmid.repository.UserRepository;
 import com.example.springmid.service.AuthService;
 import com.example.springmid.service.MailSenderService;
 import com.example.springmid.service.RefreshTokenService;
@@ -38,8 +38,8 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final RefreshTokenService refreshTokenService;
     private final JwtService jwtService;
-    private final CustomerRepository customerRepository;
-    private final CustomerMapper customerMapper;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
     private final ConfirmationTokenRepository confirmationTokenRepository;
     private final MailSenderService emailService;
@@ -62,7 +62,7 @@ public class AuthServiceImpl implements AuthService {
     public AuthResponseDTO refreshToken(RefreshTokenRequestDTO refreshTokenRequestDTO) {
         return refreshTokenService.findByToken(refreshTokenRequestDTO.getToken())
                 .map(refreshTokenService::verifyExpiration)
-                .map(RefreshToken::getCustomer)
+                .map(RefreshToken::getUser)
                 .map(customer -> {
                     String accessToken = jwtService.GenerateToken(customer.getUsername());
                     return AuthResponseDTO.builder()
@@ -72,21 +72,21 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public ResponseEntity<?> signUp(CustomerRequestDTO requestDTO, HttpServletRequest servletRequest) throws MessagingException {
-        if (customerRepository.existsByUsername(requestDTO.getUsername())) {
+    public ResponseEntity<?> signUp(UserRequestDTO requestDTO, HttpServletRequest servletRequest) throws MessagingException {
+        if (userRepository.existsByUsername(requestDTO.getUsername())) {
             throw new GeneralException("Username already exists");
         }
 
-        if (customerRepository.existsByEmail(requestDTO.getEmail())) {
+        if (userRepository.existsByEmail(requestDTO.getEmail())) {
             throw new GeneralException("Email already exists");
         }
-        Customer customer = customerMapper.toEntity(requestDTO);
-        customer.setRole(Role.CUSTOMER);
-        customer.setStatus(Status.NOT_VERIFIED);
-        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-        customerRepository.save(customer);
+        User user = userMapper.toEntity(requestDTO);
+        user.setRole(Role.USER);
+        user.setStatus(Status.NOT_VERIFIED);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
 
-        sendConfirmationToken(customer, servletRequest);
+        sendConfirmationToken(user, servletRequest);
         return new ResponseEntity<>("Successfully signed up! Email verification link was sent to your email.", HttpStatus.CREATED);
     }
 
@@ -98,32 +98,32 @@ public class AuthServiceImpl implements AuthService {
         if (isTokenExpired(confirmationToken)) {
             throw new GeneralException("Token is expired");
         }
-        Customer customer = confirmationToken.getCustomer();
-        customer.setStatus(Status.VERIFIED);
-        customerRepository.save(customer);
+        User user = confirmationToken.getUser();
+        user.setStatus(Status.VERIFIED);
+        userRepository.save(user);
 
         confirmationTokenRepository.delete(confirmationToken);
 
         return "You successfully verified your email!";
     }
 
-    public void sendConfirmationToken(Customer customer, HttpServletRequest request) throws MessagingException {
-        ConfirmationToken token = createConfirmationToken(customer);
+    public void sendConfirmationToken(User user, HttpServletRequest request) throws MessagingException {
+        ConfirmationToken token = createConfirmationToken(user);
         String confirmationUrl = getConfirmationUrl(request, token.getToken());
 
         emailService.sendConfirmationEmail(token, confirmationUrl);
     }
 
-    private ConfirmationToken createConfirmationToken(Customer customer) {
+    private ConfirmationToken createConfirmationToken(User user) {
         String randomString = UUID.randomUUID().toString();
 
-        Optional<ConfirmationToken> token = confirmationTokenRepository.findByCustomer(customer);
+        Optional<ConfirmationToken> token = confirmationTokenRepository.findByCustomer(user);
         if (token.isPresent()) {
             token.get().setToken(randomString);
             token.get().setDates(LocalDateTime.now());
             return confirmationTokenRepository.save(token.get());
         } else {
-            ConfirmationToken newToken = new ConfirmationToken(randomString, customer);
+            ConfirmationToken newToken = new ConfirmationToken(randomString, user);
             return confirmationTokenRepository.save(newToken);
         }
     }

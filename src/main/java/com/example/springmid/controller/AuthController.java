@@ -2,7 +2,7 @@ package com.example.springmid.controller;
 
 import com.example.springmid.dto.request.AuthRequestDTO;
 import com.example.springmid.dto.request.AuthResponseDTO;
-import com.example.springmid.dto.request.CustomerRequestDTO;
+import com.example.springmid.dto.request.UserRequestDTO;
 import com.example.springmid.dto.request.RefreshTokenRequestDTO;
 import com.example.springmid.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,7 +27,7 @@ public class AuthController {
     @Operation(
             summary = "Registration"
     )
-    public ResponseEntity<?> signUp(@Valid @RequestBody CustomerRequestDTO requestDTO,
+    public ResponseEntity<?> signUp(@Valid @RequestBody UserRequestDTO requestDTO,
                                     HttpServletRequest servletRequest) throws MessagingException {
         return authService.signUp(requestDTO, servletRequest);
     }

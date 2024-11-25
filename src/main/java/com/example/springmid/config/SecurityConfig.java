@@ -1,6 +1,6 @@
 package com.example.springmid.config;
 
-import com.example.springmid.repository.CustomerRepository;
+import com.example.springmid.repository.UserRepository;
 import com.example.springmid.service.impl.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -24,9 +24,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableMethodSecurity
 @RequiredArgsConstructor
-public class SecurityConfig {
+public class    SecurityConfig {
     private final JwtAuthFilter jwtAuthFilter;
-    private final CustomerRepository customerRepository;
+    private final UserRepository userRepository;
 
     private final String[] WHITELISTED_ENDPOINTS = {
             "/swagger-ui/**",
@@ -39,7 +39,7 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserDetailsServiceImpl(customerRepository);
+        return new UserDetailsServiceImpl(userRepository);
     }
 
     @Bean

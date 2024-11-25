@@ -6,7 +6,7 @@ The project is structured as follows:
 
 entities: Contains the entity classes representing the database tables.
 
-Order.java: Entity class representing an order.
+Order.java: Entity class representing an booking.
 Product.java: Entity class representing a product.
 Customer.java: Entity class representing a user.
 dtos: Contains Data Transfer Object (DTO) classes.
@@ -14,7 +14,7 @@ dtos: Contains Data Transfer Object (DTO) classes.
 Includes request and response DTOs used for communication between the client and server.
 mappers: Contains classes responsible for mapping between entities and DTOs.
 
-OrderMapper.java: Mapper interface for mapping order entities to DTOs and vice versa.
+OrderMapper.java: Mapper interface for mapping booking entities to DTOs and vice versa.
 repositories: Contains repository interfaces for interacting with the database.
 
 Repository interfaces for entities, such as OrderRepository, ProductRepository, and CustomerRepository.

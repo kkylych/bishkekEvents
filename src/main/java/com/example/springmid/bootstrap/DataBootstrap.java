@@ -1,9 +1,9 @@
 //package com.example.springmid.bootstrap;
 //
-//import com.example.springmid.entities.Order;
+//import com.example.springmid.entities.Booking;
 //import com.example.springmid.entities.Product;
 //import com.example.springmid.entities.User;
-//import com.example.springmid.repositories.OrderRepository;
+//import com.example.springmid.repositories.BookingRepository;
 //import com.example.springmid.repositories.ProductRepository;
 //import com.example.springmid.repositories.UserRepository;
 //import jakarta.transaction.Transactional;
@@ -24,9 +24,9 @@
 //    }
 //    private final UserRepository userRepository;
 //    private final ProductRepository productRepository;
-//    private final OrderRepository orderRepository;
+//    private final BookingRepository orderRepository;
 //    @Autowired
-//    public DataBootstrap(UserRepository userRepository, ProductRepository productRepository, OrderRepository orderRepository) {
+//    public DataBootstrap(UserRepository userRepository, ProductRepository productRepository, BookingRepository orderRepository) {
 //        this.userRepository = userRepository;
 //        this.productRepository = productRepository;
 //        this.orderRepository = orderRepository;
@@ -74,7 +74,7 @@
 //        String line;
 //        while ((line = reader.readLine()) != null ) {
 //            String[] data = line.split(",");
-//            Order order = new Order();
+//            Booking order = new Booking();
 //            order.setOrderId(Long.parseLong(data[0]));
 //            order.setQuantity(Integer.parseInt(data[1]));
 //

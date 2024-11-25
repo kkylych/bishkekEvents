@@ -1,13 +1,13 @@
 package com.example.springmid.repository;
 
-import com.example.springmid.entity.Order;
+import com.example.springmid.entity.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface BookingRepository extends JpaRepository<Booking, Long> {
 
-    Optional<Order> findAllByUserId(Long id);
+    Optional<Booking> findAllByUserId(Long id);
 }

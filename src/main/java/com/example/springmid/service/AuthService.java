@@ -2,7 +2,7 @@ package com.example.springmid.service;
 
 import com.example.springmid.dto.request.AuthRequestDTO;
 import com.example.springmid.dto.request.AuthResponseDTO;
-import com.example.springmid.dto.request.CustomerRequestDTO;
+import com.example.springmid.dto.request.UserRequestDTO;
 import com.example.springmid.dto.request.RefreshTokenRequestDTO;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +13,7 @@ public interface AuthService {
 
     AuthResponseDTO refreshToken(RefreshTokenRequestDTO refreshTokenRequestDTO);
 
-    ResponseEntity<?> signUp(CustomerRequestDTO requestDTO, HttpServletRequest servletRequest) throws MessagingException;
+    ResponseEntity<?> signUp(UserRequestDTO requestDTO, HttpServletRequest servletRequest) throws MessagingException;
 
     String verifyEmail(String token);
 }

@@ -1,16 +1,16 @@
 package com.example.springmid.mapper;
 
-import com.example.springmid.dto.response.OrderResponseDTO;
-import com.example.springmid.dto.request.OrderRequestDTO;
-import com.example.springmid.entity.Order;
-import com.example.springmid.entity.Product;
-import com.example.springmid.entity.Customer;
+import com.example.springmid.dto.response.BookingResponseDTO;
+import com.example.springmid.dto.request.BookingRequestDTO;
+import com.example.springmid.entity.Booking;
+import com.example.springmid.entity.Event;
+import com.example.springmid.entity.User;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring", uses = {Customer.class, Product.class})
+@Mapper(componentModel = "spring", uses = {User.class, Event.class})
 public interface OrderMapper {
 
-    Order toEntity(OrderRequestDTO orderRequestDTO);
+    Booking toEntity(BookingRequestDTO bookingRequestDTO);
 
-    OrderResponseDTO toDTO(Order order);
+    BookingResponseDTO toDTO(Booking booking);
 }

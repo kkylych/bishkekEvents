@@ -1,9 +1,9 @@
 package com.example.springmid.controller;
 
 import com.example.springmid.dto.response.CustomerResponseDTO;
-import com.example.springmid.dto.request.CustomerRequestDTO;
-import com.example.springmid.entity.Customer;
-import com.example.springmid.service.CustomerService;
+import com.example.springmid.dto.request.UserRequestDTO;
+import com.example.springmid.entity.User;
+import com.example.springmid.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,10 +20,10 @@ import java.util.List;
 @Tag(
         name = "Controller for getting, updating users"
 )
-public class CustomerController {
-    private final CustomerService userService;
+public class UserController {
+    private final UserService userService;
 
-    public CustomerController(CustomerService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -33,7 +33,7 @@ public class CustomerController {
     )
     @SecurityRequirement(name = "JWT")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<CustomerResponseDTO> createUser(@RequestBody CustomerRequestDTO userRequestDTO) {
+    public ResponseEntity<CustomerResponseDTO> createUser(@RequestBody UserRequestDTO userRequestDTO) {
         return new ResponseEntity<>(userService.create(userRequestDTO), HttpStatus.CREATED);
     }
 
@@ -44,8 +44,8 @@ public class CustomerController {
     @SecurityRequirement(name = "JWT")
     public ResponseEntity<CustomerResponseDTO> updateUser(@RequestParam String username,
                                                           @RequestParam String email,
-                                                          @AuthenticationPrincipal Customer customer) {
-        return new ResponseEntity<>(userService.update(customer, username, email), HttpStatus.OK);
+                                                          @AuthenticationPrincipal User user) {
+        return new ResponseEntity<>(userService.update(user, username, email), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
