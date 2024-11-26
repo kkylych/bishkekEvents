@@ -10,7 +10,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: ${HBM_DDL_AUTO:create-drop}
+      ddl-auto: ${HBM_DDL_AUTO:update}
     properties:
       hibernate:
         dialect: ${HBM_DIALECT:org.hibernate.dialect.H2Dialect}
