@@ -2,21 +2,21 @@ server:
   port: 9999
 
 spring:
+  application:
+    name: bishevent
+
   datasource:
-    url: ${JDBC_URL:jdbc:h2:file:./database/order}
-    driver-class-name: ${DRIVER_CLASS_NAME:org.h2.Driver}
-    username: ${DB_USERNAME:sa}
-    password: ${DB_PASSWORD:password}
+    url: jdbc:postgresql://localhost:5432/bishevent
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: ${HBM_DDL_AUTO:update}
+      ddl-auto: validate
     properties:
       hibernate:
-        dialect: ${HBM_DIALECT:org.hibernate.dialect.H2Dialect}
-  h2:
-    console:
-      enabled: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   mail:
     host: smtp.gmail.com
     port: 587
