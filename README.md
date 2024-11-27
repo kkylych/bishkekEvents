@@ -1,4 +1,3 @@
-BishEvents
 BishEvents – это веб-платформа для организации, бронирования и просмотра мероприятий в городе Бишкек. Она предоставляет удобный интерфейс для поиска событий, онлайн-бронирования мест и создания собственных мероприятий.
 
 Функциональность
@@ -24,32 +23,32 @@ Maven – управление зависимостями.
 GitHub – контроль версий.
 Agile/Scrum – методология разработки.
 Установка и запуск проекта
+
 1. Клонирование репозитория
 bash
-Copy code
-git clone https://github.com/ваш_репозиторий/BishEvents.git](https://github.com/kkylych/bishkekEvents.git 
-cd BishEvents  
+git clone https://github.com/kkylych/bishkekEvents.git
+  
 2. Настройка базы данных
 Убедитесь, что PostgreSQL установлен и запущен.
 Создайте базу данных для проекта:
 sql
-
 CREATE DATABASE bishevents;  
 Укажите параметры подключения в файле application.properties:
 properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/bishevents  
 spring.datasource.username=postgres  
-spring.datasource.password=123456 
-3. Сборка и запуск приложения
+spring.datasource.password=123456
+
+4. Сборка и запуск приложения
 Соберите проект с помощью Maven:
 bash
-Copy code
-mvn clean install  
+mvn clean install
+
 Запустите приложение:
 bash
-Copy code
 mvn spring-boot:run  
-4. Доступ к приложению
+
+5. Доступ к приложению
 Откройте браузер и перейдите по адресу:
 http://localhost:8080  
 Основные эндпоинты
