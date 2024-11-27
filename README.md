@@ -27,20 +27,19 @@ Agile/Scrum – методология разработки.
 1. Клонирование репозитория
 bash
 Copy code
-git clone https://github.com/ваш_репозиторий/BishEvents.git  
+git clone https://github.com/ваш_репозиторий/BishEvents.git](https://github.com/kkylych/bishkekEvents.git 
 cd BishEvents  
 2. Настройка базы данных
 Убедитесь, что PostgreSQL установлен и запущен.
 Создайте базу данных для проекта:
 sql
-Copy code
+
 CREATE DATABASE bishevents;  
 Укажите параметры подключения в файле application.properties:
 properties
-Copy code
 spring.datasource.url=jdbc:postgresql://localhost:5432/bishevents  
 spring.datasource.username=postgres  
-spring.datasource.password=ваш_пароль  
+spring.datasource.password=123456 
 3. Сборка и запуск приложения
 Соберите проект с помощью Maven:
 bash
@@ -52,9 +51,6 @@ Copy code
 mvn spring-boot:run  
 4. Доступ к приложению
 Откройте браузер и перейдите по адресу:
-
-arduino
-Copy code
 http://localhost:8080  
 Основные эндпоинты
 Пользователи:
